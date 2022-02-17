@@ -1,0 +1,9 @@
+[Unit]
+Description=Serial To IP Server
+
+[Service]
+User=root
+ExecStart=/var/lib/serialtoip/Atomic.SerialToIp /etc/serialtoip/ports.conf
+
+[Install]
+WantedBy=multi-user.target
