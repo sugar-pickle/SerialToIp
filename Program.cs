@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Atomic.SerialToIp
+namespace SerialToIp
 {
     public static class Program
     {

@@ -5,7 +5,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading.Tasks;
 
-namespace Atomic.SerialToIp
+namespace SerialToIp
 {
     public class SerialIpServer
     {
@@ -31,15 +31,14 @@ namespace Atomic.SerialToIp
                     if (!disconnectedQueue.IsEmpty) _ = Task.Run(ClearDisconnectedQueue);
                     while (connectedStream != null)
                     {
-                        if (socket.Available < 1) continue;
-                        var buffer = new byte[socket.Available];
-                        var received = await connectedStream.ReadAsync(buffer);
-                        if (received < 1)
+                        if (socket.Available < 1)
                         {
                             await Task.Delay(500);
                             continue;
                         }
-                        serialPort.Write(buffer, 0, buffer.Length);
+                        var buffer = new byte[socket.Available];
+                        var read = await connectedStream.ReadAsync(buffer);
+                        serialPort.Write(buffer, 0, read);
                     }
                     Console.WriteLine(
                         $"Client disconnected ({port.SerialPort}:{port.IpPort}) - {socket.Client.RemoteEndPoint}");

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 // ReSharper disable StringLiteralTypo
 
-namespace Atomic.SerialToIp
+namespace SerialToIp
 {
     public static class ConfigParser
     {
